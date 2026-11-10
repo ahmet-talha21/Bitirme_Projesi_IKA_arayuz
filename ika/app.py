@@ -16,38 +16,41 @@ from PySide6.QtWebSockets import QWebSocket
 from .model import Simulator, DEFAULT_ROUTE, OBSTACLES, WIDTH, HEIGHT, encode_route, decode_route, validate_route
 
 STYLE = '''
-QMainWindow, QWidget { background: #0b1020; color: #e6edff; font-family: 'Segoe UI', 'DejaVu Sans'; font-size: 12px; }
-QFrame#header { background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1f2e61, stop:0.5 #202649, stop:1 #34225b); border: 1px solid #45548a; border-radius: 14px; }
-QFrame#header QLabel { background: transparent; }
-QFrame#panel { background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #17233c, stop:1 #111b30); border: 1px solid #2d3d60; border-radius: 12px; }
+QMainWindow, QWidget { background: #edf4ff; color: #20385b; font-family: 'Segoe UI', 'DejaVu Sans'; font-size: 12px; }
+QFrame#header { background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #1677f0, stop:0.5 #4463ed, stop:1 #9250e9); border: 1px solid #91a7ff; border-radius: 14px; }
+QFrame#header QLabel { background: transparent; color: #ffffff; }
+QFrame#header QLabel#muted { color: #e2edff; }
+QFrame#panel { background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #ffffff, stop:1 #f6faff); border: 1px solid #c7d9f2; border-radius: 12px; }
 QFrame#panel QLabel { background: transparent; }
 QSlider { background: transparent; }
-QLabel#muted { color: #a0b2d2; font-size: 11px; }
+QScrollBar:vertical { background: #e2ecfa; width: 12px; }
+QScrollBar::handle:vertical { background: #9fbbe6; border-radius: 5px; min-height: 30px; }
+QLabel#muted { color: #526b8c; font-size: 11px; }
 QLabel#title { font-size: 25px; font-weight: 700; color: #f4f7ff; }
-QLabel#section { font-size: 13px; font-weight: 700; color: #b9caff; }
-QLabel#metric { font-size: 25px; font-weight: 700; color: #50e1cb; }
-QPushButton { background: #223456; border: 1px solid #435d8a; border-radius: 7px; padding: 9px 11px; font-weight: 600; }
-QPushButton:hover { background: #304a77; border-color: #8bafff; color: #ffffff; }
-QPushButton:pressed { background: #3b58a0; border-color: #b9ccff; }
-QPushButton:disabled { color: #8090ad; border-color: #30415f; background: #1a263e; }
-QPushButton#primary { background: qlineargradient(x1:0,y1:0,x2:1,y2:0,stop:0 #20cdb4,stop:1 #4c9bff); color: #061d32; border: 1px solid #67dfed; }
-QPushButton#primary:hover { background: #77e9df; }
-QPushButton#primary:disabled { background: #24465a; color: #99b3c6; border-color: #36556a; }
-QPushButton#stop { background: qlineargradient(x1:0,y1:0,x2:1,y2:0,stop:0 #922f50,stop:1 #612443); color: #fff0f4; border: 1px solid #f57293; font-size: 14px; padding: 14px; }
-QPushButton#stop:hover { background: #b43659; border-color: #ffb0c6; }
-QPushButton#draw { background: #3b326a; border-color: #9078dc; color: #e4d9ff; }
-QPushButton#draw:hover { background: #59448d; }
-QPushButton#draw:disabled { background: #262b49; color: #9394b0; border-color: #424765; }
-QPushButton#drive { background: #1e3554; color: #85d9ff; font-size: 20px; border-color: #3e638b; }
-QPushButton#drive:pressed { background: #267b92; color: #ffffff; }
-QPushButton#drive:disabled { background: #1b273d; color: #778ba7; border-color: #33445f; }
-QComboBox, QLineEdit { background: #0d192e; border: 1px solid #41577e; border-radius: 6px; padding: 8px; selection-background-color: #3e63ab; }
-QComboBox:hover, QLineEdit:focus { border-color: #8caeff; }
-QComboBox QAbstractItemView { background: #192844; color: #eef3ff; selection-background-color: #3e5390; }
-QTextEdit { background: #0e182b; border: 1px solid #263858; border-radius: 6px; color: #b3c5e7; font-family: Consolas, monospace; font-size: 11px; }
-QSlider::groove:horizontal { height: 6px; background: #30425f; border-radius: 3px; }
-QSlider::sub-page:horizontal { background: qlineargradient(x1:0,y1:0,x2:1,y2:0,stop:0 #7b83ff,stop:1 #46d9d0); border-radius: 3px; }
-QSlider::handle:horizontal { background: #b1fcf1; border: 2px solid #39cdbd; width: 14px; margin: -5px 0; border-radius: 8px; }
+QLabel#section { font-size: 13px; font-weight: 700; color: #2556a5; }
+QLabel#metric { font-size: 25px; font-weight: 700; color: #087f78; }
+QPushButton { background: #e8f1ff; border: 1px solid #b0c9ee; border-radius: 7px; padding: 9px 11px; font-weight: 600; }
+QPushButton:hover { background: #2379df; border-color: #1764cd; color: #ffffff; }
+QPushButton:pressed { background: #155fc6; border-color: #7baaff; }
+QPushButton:disabled { color: #7186a2; border-color: #d2dff0; background: #edf2f9; }
+QPushButton#primary { background: qlineargradient(x1:0,y1:0,x2:1,y2:0,stop:0 #12dbc0,stop:1 #51b6ff); color: #063d58; border: 1px solid #23babc; }
+QPushButton#primary:hover { background: #8ff6db; }
+QPushButton#primary:disabled { background: #dcecf2; color: #6b8595; border-color: #c6dbe5; }
+QPushButton#stop { background: qlineargradient(x1:0,y1:0,x2:1,y2:0,stop:0 #ff4268,stop:1 #e52956); color: #ffffff; border: 1px solid #ec2451; font-size: 14px; padding: 14px; }
+QPushButton#stop:hover { background: #d91f49; border-color: #ff96ae; }
+QPushButton#draw { background: #8258ef; border-color: #7544e4; color: #ffffff; }
+QPushButton#draw:hover { background: #683bce; }
+QPushButton#draw:disabled { background: #ede9f7; color: #8a80a0; border-color: #d7d0e7; }
+QPushButton#drive { background: #dceeff; color: #1267bd; font-size: 20px; border-color: #85b6ec; }
+QPushButton#drive:pressed { background: #1378d0; color: #ffffff; }
+QPushButton#drive:disabled { background: #edf2f9; color: #7f92ad; border-color: #d2dff0; }
+QComboBox, QLineEdit { background: #ffffff; border: 1px solid #b7cdec; border-radius: 6px; padding: 8px; selection-background-color: #357dde; }
+QComboBox:hover, QLineEdit:focus { border-color: #367ee8; }
+QComboBox QAbstractItemView { background: #ffffff; color: #20385b; selection-background-color: #b8d9ff; }
+QTextEdit { background: #f1f6ff; border: 1px solid #d1dff3; border-radius: 6px; color: #42618b; font-family: Consolas, monospace; font-size: 11px; }
+QSlider::groove:horizontal { height: 6px; background: #ccdcf0; border-radius: 3px; }
+QSlider::sub-page:horizontal { background: qlineargradient(x1:0,y1:0,x2:1,y2:0,stop:0 #8b60f5,stop:1 #00c8bb); border-radius: 3px; }
+QSlider::handle:horizontal { background: #ffffff; border: 2px solid #08b7ae; width: 14px; margin: -5px 0; border-radius: 8px; }
 '''
 
 
@@ -122,18 +125,18 @@ class MapCanvas(QWidget):
         s,ox,oy = self.area()
         rect = QRectF(ox,oy,WIDTH*s,HEIGHT*s)
         field = QLinearGradient(rect.topLeft(), rect.bottomRight())
-        field.setColorAt(0, QColor('#142b45'))
-        field.setColorAt(1, QColor('#191b35'))
+        field.setColorAt(0, QColor('#e7f5ff'))
+        field.setColorAt(1, QColor('#f2edff'))
         p.fillRect(rect, field)
-        p.setPen(QPen(QColor('#2a3d5b'),1))
+        p.setPen(QPen(QColor('#cadcef'),1))
         for x in range(21):
             p.drawLine(self.screen(x,0),self.screen(x,HEIGHT))
         for y in range(15):
             p.drawLine(self.screen(0,y),self.screen(WIDTH,y))
-        p.setPen(QPen(QColor('#4c6895'), 1.3))
+        p.setPen(QPen(QColor('#9bbbe0'), 1.3))
         p.setBrush(Qt.BrushStyle.NoBrush)
         p.drawRoundedRect(rect, 5, 5)
-        p.setPen(QColor('#96accf'))
+        p.setPen(QColor('#587399'))
         p.setFont(QFont('Segoe UI',9))
         for x in range(0,21,5):
             a = self.screen(x,0)
@@ -143,30 +146,30 @@ class MapCanvas(QWidget):
             p.drawText(QPointF(a.x()-35,a.y()+4),str(y))
         if self.simulation:
             for x,y,r in OBSTACLES:
-                p.setPen(QPen(QColor('#edb76d'),1,Qt.PenStyle.DashLine))
-                p.setBrush(QColor(255,177,76,24))
+                p.setPen(QPen(QColor('#e89123'),1,Qt.PenStyle.DashLine))
+                p.setBrush(QColor(255,177,76,45))
                 p.drawEllipse(self.screen(x,y),(r+.4)*s,(r+.4)*s)
-                p.setPen(QPen(QColor('#ffc077'),1.5))
-                p.setBrush(QColor('#87562f'))
+                p.setPen(QPen(QColor('#da7b06'),1.5))
+                p.setBrush(QColor('#ffbe54'))
                 p.drawEllipse(self.screen(x,y),r*s,r*s)
         if len(self.trace)>1:
-            p.setPen(QPen(QColor('#63a9ff'),2.5))
+            p.setPen(QPen(QColor('#3584f4'),2.5))
             p.drawPolyline(QPolygonF([self.screen(*a) for a in self.trace]))
         if len(self.route)>1:
             route_shape = QPolygonF([self.screen(*a) for a in self.route])
-            p.setPen(QPen(QColor(63, 231, 208, 25), 10))
+            p.setPen(QPen(QColor(0, 174, 165, 35), 10))
             p.drawPolyline(route_shape)
-            p.setPen(QPen(QColor('#48ead0'),2.5,Qt.PenStyle.DashLine))
+            p.setPen(QPen(QColor('#009e95'),2.5,Qt.PenStyle.DashLine))
             p.drawPolyline(route_shape)
         for i, point in enumerate(self.route):
             a = self.screen(*point)
-            p.setBrush(QColor('#176862') if i else QColor('#6051ba'))
-            p.setPen(QPen(QColor('#68e1c7'),2))
+            p.setBrush(QColor('#079e96') if i else QColor('#8752eb'))
+            p.setPen(QPen(QColor('#ffffff'),2))
             p.drawEllipse(a,11,11)
-            p.setPen(QColor('#e1fff9'))
+            p.setPen(QColor('#ffffff'))
             p.drawText(QRectF(a.x()-11,a.y()-11,22,22),Qt.AlignmentFlag.AlignCenter,str(i+1))
         if self.sim.detour and self.simulation:
-            p.setPen(QPen(QColor('#f3b967'),2,Qt.PenStyle.DotLine))
+            p.setPen(QPen(QColor('#d57800'),2,Qt.PenStyle.DotLine))
             p.drawPolyline(QPolygonF([self.screen(self.sim.x,self.sim.y)]+[self.screen(*a) for a in self.sim.detour]))
         a = self.screen(self.sim.x,self.sim.y)
         p.save()
@@ -180,13 +183,13 @@ class MapCanvas(QWidget):
         p.drawEllipse(QPointF(),35,35)
         # Simülasyonda ön sensörün ölçüm ışını.
         if self.simulation:
-            p.setPen(QPen(QColor(113,219,255,150),1.5,Qt.PenStyle.DotLine))
+            p.setPen(QPen(QColor(35,115,230,190),1.5,Qt.PenStyle.DotLine))
             p.drawLine(QPointF(20,0),QPointF(max(20,self.sim.front*s),0))
-        p.setBrush(QColor('#effffb'))
-        p.setPen(QPen(QColor('#63d8c0'),2))
+        p.setBrush(QColor('#ffffff'))
+        p.setPen(QPen(QColor('#008e86'),2))
         p.drawPolygon(QPolygonF([QPointF(17,0),QPointF(-11,-10),QPointF(-6,0),QPointF(-11,10)]))
         p.restore()
-        p.setPen(QColor('#7e98af'))
+        p.setPen(QColor('#607a9c'))
         p.drawText(QPointF(ox+12,oy+22),'Y ↑     YEREL KOORDİNAT     X →')
 
 
@@ -243,7 +246,7 @@ class MainWindow(QMainWindow):
         header.addStretch()
         self.badge = label('●  SİMÜLASYON', 'section')
         self.badge.setFixedHeight(44)
-        self.badge.setStyleSheet('color: #ddceff; padding: 12px; background: #433269; border: 1px solid #9b7ad9; border-radius: 8px;')
+        self.badge.setStyleSheet('color: #6e30bd; padding: 12px; background: #f0e4ff; border: 1px solid #be9be8; border-radius: 8px;')
         header.addWidget(self.badge)
         outer.addWidget(header_box)
         columns = QHBoxLayout()
@@ -328,16 +331,17 @@ class MainWindow(QMainWindow):
         box, layout = panel('ARAÇ DURUMU')
         box.setFixedWidth(240)
         self.state_label = label('Hazır','section')
-        self.state_label.setStyleSheet('color: #79f1d4; background: #163d3e; border: 1px solid #2a7169; border-radius: 7px; padding: 10px;')
+        self.state_label.setStyleSheet('color: #087254; background: #dcfaed; border: 1px solid #82d9b4; border-radius: 7px; padding: 10px;')
         layout.addWidget(self.state_label)
         self.mode_label = label('MANUEL','muted')
         layout.addWidget(self.mode_label)
         self.metrics = {}
-        metric_colors = {'speed': '#55e8ce', 'front': '#ffc578', 'position': '#8dc5ff', 'heading': '#c4a5ff', 'progress': '#71e4f0'}
+        metric_backgrounds = {'speed': '#e0fbf2', 'front': '#fff1d8', 'position': '#e4f1ff', 'heading': '#f1e8ff', 'progress': '#e0f7fd'}
+        metric_colors = {'speed': '#008579', 'front': '#a85b00', 'position': '#1769c2', 'heading': '#8146cf', 'progress': '#087e9d'}
         for key,title in [('speed','ANLIK HIZ'),('front','ÖN MESAFE SENSÖRÜ'),('position','KONUM · ENKODER + IMU'),('heading','YÖNELİM'),('progress','ROTA İLERLEMESİ')]:
             card = QFrame()
             color = metric_colors[key]
-            card.setStyleSheet(f'QFrame {{ background: #162840; border: none; border-left: 3px solid {color}; border-radius: 5px; }} QLabel {{ border: none; background: transparent; }}')
+            card.setStyleSheet(f'QFrame {{ background: {metric_backgrounds[key]}; border: none; border-left: 4px solid {color}; border-radius: 5px; }} QLabel {{ border: none; background: transparent; }}')
             card_layout = QVBoxLayout(card)
             card_layout.setContentsMargins(11, 7, 8, 7)
             card_layout.setSpacing(3)
@@ -573,17 +577,17 @@ class MainWindow(QMainWindow):
             self.connection_info.setText('WebSocket açık' if self.socket.isValid() else 'Bağlantı kapalı')
         self.state_label.setText(state)
         if self.is_sim:
-            badge_colors = ('#ddceff', '#433269', '#9b7ad9')
+            badge_colors = ('#6e30bd', '#f0e4ff', '#be9be8')
         elif self.last_data is not None and now-self.last_rx<1.:
-            badge_colors = ('#83f5dd', '#153d3e', '#328878')
+            badge_colors = ('#056d50', '#d7faed', '#76cfaf')
         else:
-            badge_colors = ('#ffd6a0', '#4b3431', '#ae7949')
+            badge_colors = ('#8f5100', '#fff0d5', '#edbc68')
         fg, bg, border = badge_colors
         self.badge.setStyleSheet(f'color: {fg}; background: {bg}; border: 1px solid {border}; border-radius: 8px; padding: 12px;')
         if 'kaçıl' in state or 'güncel değil' in state or 'Güvenli geçiş yok' in state:
-            self.state_label.setStyleSheet('color: #ffda9d; background: #453528; border: 1px solid #a67c40; border-radius: 7px; padding: 10px;')
+            self.state_label.setStyleSheet('color: #915000; background: #fff1d4; border: 1px solid #efbf70; border-radius: 7px; padding: 10px;')
         else:
-            self.state_label.setStyleSheet('color: #79f1d4; background: #163d3e; border: 1px solid #2a7169; border-radius: 7px; padding: 10px;')
+            self.state_label.setStyleSheet('color: #087254; background: #dcfaed; border: 1px solid #82d9b4; border-radius: 7px; padding: 10px;')
         if state!=self.last_state:
             self.log(state)
             self.last_state = state

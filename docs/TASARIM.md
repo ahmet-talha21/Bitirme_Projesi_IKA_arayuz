@@ -1,6 +1,6 @@
 # İKA kontrol arayüzü — başlangıç taslağı
 
-Durum: Gereksinimler kullanıcıyla netleştiriliyor. Bu belge kesinleşmiş donanım veya protokol gereksinimi tanımlamaz.
+Durum: İlk çalışan prototip hazır. Kullanıcının kararı: Windows masaüstü, ESP32 ile Wi-Fi/WebSocket, enkoder + IMU, mesafe sensörüyle engelden kaçınma ve çizilmiş rotaya dönüş. PySide6 kullanılıyor. Gerçek araç hareket kontrolü henüz etkin değil.
 
 ## Amaç
 
@@ -28,11 +28,11 @@ Panellerin önceliği ve yerleşimi kullanım senaryosu yanıtlandıktan sonra k
 - Yazılımdaki durdurma komutu, donanımsal acil durdurmanın yerine geçmez. Gerçek durdurma davranışı araç ekibiyle doğrulanmalı.
 - Hız limitleri, komut sıklığı, zaman aşımı süreleri ve birimler araç özellikleriyle birlikte kararlaştırılmalı.
 
-## Henüz netleşmeyen kararlar
+## İlk görüşmedeki sorular ve güncel durum
 
-1. Masaüstü veya web uygulaması; hedef cihazlar ve işletim sistemi.
+1. Windows masaüstü olarak kesinleşti.
 2. Aracın kullanım amacı, sürüş sistemi, sensörleri ve kamera donanımı.
-3. Haberleşme altyapısı, mesaj biçimleri ve araç tarafındaki yazılım.
+3. ESP32 / Wi-Fi / WebSocket kesinleşti; mesaj taslağı ESP32_PROTOKOL.md içinde, firmware bekleniyor.
 4. Klavye, ekran kontrolleri ve oyun kumandası ihtiyaçları.
 5. Manuel/otonom çalışma, görev planlama ve harita ihtiyacı.
 6. Telemetri alanları, ölçüm birimleri, güncelleme hızları ve kayıt ihtiyaçları.
@@ -40,4 +40,4 @@ Panellerin önceliği ve yerleşimi kullanım senaryosu yanıtlandıktan sonra k
 
 ## İlk sürümün doğrulanması
 
-Teknoloji seçildikten sonra simülasyonla bağlantı açma/kapatma, telemetri güncelliği, manuel kontrolü bırakma, durdurma ve bağlantı kaybı davranışları test edilecek. Gerçek cihaz entegrasyonu ayrıca doğrulanacak.
+Rota dosyası, engelden kaçınma/rotaya dönüş, durdurma, manuel sürüş, arayüz çizimi ve yerel WebSocket telemetri testleri mevcut. Gerçek cihaz ve Windows üzerinde entegrasyon ayrıca doğrulanacak.

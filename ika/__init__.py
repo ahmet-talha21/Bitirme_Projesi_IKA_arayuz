@@ -1,0 +1,1 @@
+"""İKA yer kontrol istasyonu."""

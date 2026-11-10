@@ -1,0 +1,1 @@
+Bu dosya, bulut ortamında dosya oluşturma ve kaydetmeyi denemek için oluşturuldu.
